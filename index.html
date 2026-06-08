@@ -1,713 +1,331 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
- 
-
 <title>Happy Best Friend Day</title>
 
- 
-
 <style>
-
- 
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orbitron:wght@700;900&display=swap');
 
- 
-
 *{
-
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
-
 }
-
- 
 
 body{
-
 background:#0a0a16;
-
 font-family:Montserrat,sans-serif;
-
 color:white;
-
 text-align:center;
-
 overflow-x:hidden;
-
 }
-
- 
 
 .screen{
-
 display:none;
-
 padding:20px;
-
 }
-
- 
 
 .active{
-
 display:flex;
-
 flex-direction:column;
-
 justify-content:center;
-
 align-items:center;
-
 min-height:100vh;
-
 }
-
- 
 
 button{
-
 padding:15px 35px;
-
 border:none;
-
 border-radius:40px;
-
 background:#3a86ff;
-
 color:white;
-
 font-size:18px;
-
 cursor:pointer;
-
 }
-
- 
 
 .percent{
-
 font-size:90px;
-
 font-family:Orbitron,sans-serif;
-
 color:#52b7ff;
-
 }
-
- 
 
 .bar{
-
 width:85%;
-
 max-width:400px;
-
 height:8px;
-
 background:#222;
-
 border-radius:20px;
-
 overflow:hidden;
-
 margin-top:20px;
-
 }
-
- 
 
 .progress{
-
 height:100%;
-
 width:0%;
-
 background:#52b7ff;
-
 }
-
- 
 
 .balloon-grid{
-
 display:grid;
-
 grid-template-columns:repeat(3,1fr);
-
 gap:20px;
-
 margin-top:30px;
-
 }
-
- 
 
 .balloon{
-
 font-size:70px;
-
 cursor:pointer;
-
 transition:transform .2s;
-
 }
-
- 
 
 .balloon:hover{
-
 transform:scale(1.2);
-
 }
-
- 
 
 .photo-card{
-
 max-width:320px;
-
 width:90%;
-
 animation:fade .5s ease;
-
 margin-top:20px;
-
 }
-
- 
 
 .photo-card img{
-
 width:100%;
-
 border-radius:20px;
-
 }
-
- 
 
 .caption{
-
 background:white;
-
 color:black;
-
 padding:12px;
-
 border-radius:12px;
-
 margin-top:10px;
-
 font-weight:bold;
-
 }
-
- 
 
 .letter{
-
 background:white;
-
 color:black;
-
 padding:25px;
-
 border-radius:20px;
-
 max-width:700px;
-
 width:90%;
-
 line-height:1.8;
-
 }
-
- 
 
 #typing{
-
 white-space:pre-line;
-
 text-align:left;
-
 }
-
- 
 
 .heart{
-
 position:fixed;
-
 font-size:24px;
-
 top:-20px;
-
 animation:fall 4s linear forwards;
-
 }
-
- 
 
 @keyframes fade{
-
 from{opacity:0;transform:translateY(20px);}
-
 to{opacity:1;transform:translateY(0);}
-
 }
-
- 
 
 @keyframes fall{
-
 to{
-
 transform:translateY(110vh);
-
 opacity:0;
-
 }
-
 }
-
- 
-
 </style>
-
 </head>
-
- 
 
 <body>
 
- 
-
 <div id="welcome" class="screen active">
-
 <h1>Your Bestie Made This For You</h1>
-
 <br>
-
 <h3>Saini made this just for you 💛</h3>
-
 <br><br>
-
 <button onclick="startExperience()">Open It 🎁</button>
-
 </div>
-
- 
 
 <div id="loading" class="screen">
-
 <h1>Measuring your bestie energy...</h1>
-
 <div class="percent" id="percent">0%</div>
-
 <div id="status">Initializing...</div>
-
 <div class="bar">
-
 <div class="progress" id="progress"></div>
-
 </div>
-
 </div>
-
- 
 
 <div id="balloonScreen" class="screen">
-
 <h2>🎈 Pop the Balloons 🎈</h2>
-
 <p>Each one holds a little truth 💛</p>
 
-
-
 <div id="balloonContainer" class="balloon-grid"></div>
-
- 
-
 <div id="gallery"></div>
-
 </div>
-
- 
 
 <div id="transition" class="screen">
-
 <h2>You got them all.</h2>
-
 <br>
-
-<p>
-
-Every balloon held a little truth about you.
-
-<br><br>
-
-Now for the real message —
-
-the one they actually wrote.
-
-</p>
-
+<p>Every balloon held a little truth about you.<br><br>
+Now for the real message — the one they actually wrote.</p>
 </div>
-
- 
 
 <div id="letterScreen" class="screen">
-
 <div class="letter">
-
 <h2>❤️ Dear Shinzo ❤️</h2>
-
 <p id="typing"></p>
-
 </div>
-
 </div>
-
- 
 
 <script>
 
- 
-
 const photos=[
-
 "photo1.jpg",
-
 "photo2.jpg",
-
 "photo3.jpg",
-
 "photo4.jpg",
-
 "photo5.jpg",
-
 "photo6.jpg"
-
 ];
-
- 
 
 const captions=[
-
 "Office me entry hui aur drama shuru 😜",
-
 "Friendship level: Unlimited gossip unlocked 🤫",
-
 "Started as enemies, upgraded to besties 😂",
-
 "Trust level: Knows too many secrets 😭",
-
 "Professional outside, chaos inside 🤝",
-
 "Proof that some people become special unexpectedly ❤️"
-
 ];
-
- 
 
 const balloonEmojis=["🎈","🎈","🎈","🎈","🎈","🎈"];
 
- 
-
 let poppedCount=0;
 
- 
-
 function startExperience(){
-
 document.getElementById("welcome").classList.remove("active");
-
 document.getElementById("loading").classList.add("active");
-
 runLoader();
-
 }
-
- 
 
 function runLoader(){
-
- 
-
 let p=0;
-
 const percent=document.getElementById("percent");
-
 const progress=document.getElementById("progress");
 
- 
-
 const timer=setInterval(()=>{
-
- 
-
 p++;
-
 percent.innerText=p+"%";
-
 progress.style.width=(p/156*100)+"%";
 
- 
-
 if(p>=156){
-
 clearInterval(timer);
 
- 
-
 setTimeout(()=>{
-
 document.getElementById("loading").classList.remove("active");
-
 document.getElementById("balloonScreen").classList.add("active");
-
 createBalloons();
-
 },1000);
-
- 
-
 }
-
- 
 
 },30);
-
- 
-
 }
-
- 
 
 function createBalloons(){
-
- 
-
 const container=document.getElementById("balloonContainer");
 
- 
-
 for(let i=0;i<6;i++){
-
 let bal=document.createElement("div");
-
 bal.className="balloon";
-
 bal.innerHTML=balloonEmojis[i];
-
 bal.onclick=()=>popBalloon(bal,i);
-
 container.appendChild(bal);
-
 }
-
- 
-
 }
-
- 
 
 function popBalloon(balloon,index){
 
- 
-
 balloon.innerHTML="💥";
-
 balloon.style.pointerEvents="none";
 
- 
-
 setTimeout(()=>{
-
- 
 
 balloon.style.visibility="hidden";
 
- 
-
 document.getElementById("gallery").innerHTML=`
-
 <div class="photo-card">
-
-${photos[index]}
-
+<img src="${photos[index]}" alt="photo">
 <div class="caption">${captions[index]}</div>
-
 </div>
-
 `;
-
- 
 
 poppedCount++;
 
- 
-
 if(poppedCount===6){
-
 setTimeout(()=>{
-
 document.getElementById("balloonScreen").classList.remove("active");
-
 document.getElementById("transition").classList.add("active");
 
- 
-
 setTimeout(()=>{
-
 document.getElementById("transition").classList.remove("active");
-
 document.getElementById("letterScreen").classList.add("active");
-
 typeMessage();
-
 },4000);
 
- 
-
 },2000);
-
 }
-
- 
 
 },400);
-
- 
-
 }
-
- 
 
 const finalMessage=`Happy Best Friend Day, Shinzo ❤️
 
- 
-
 Hamari shuruaat perfect nahi thi,
-
 lekin shayad isi wajah se aaj hamari friendship itni special hai.
 
- 
-
 Thank you for mujh par trust karne ke liye,
-
 apni baatein share karne ke liye,
-
 aur ek genuine friend banne ke liye.
 
- 
-
 Kuch log achanak zindagi me aate hain
-
 aur dheere dheere uska important part ban jaate hain.
 
- 
-
 Stay exactly the way you are,
-
 because that's what makes you special.
-
- 
 
 Forever Best Friends 💖`;
 
- 
-
 function typeMessage(){
-
- 
-
 let i=0;
-
 const target=document.getElementById("typing");
 
- 
-
 const typing=setInterval(()=>{
-
- 
-
 target.innerHTML+=finalMessage.charAt(i);
-
 i++;
 
- 
-
 if(i>=finalMessage.length){
-
 clearInterval(typing);
-
 heartRain();
-
 }
-
- 
-
 },40);
-
- 
-
 }
-
- 
 
 function heartRain(){
-
- 
-
 setInterval(()=>{
-
- 
-
 const heart=document.createElement("div");
-
 heart.className="heart";
-
 heart.innerHTML="❤️";
-
- 
-
 heart.style.left=Math.random()*100+"vw";
-
- 
-
 document.body.appendChild(heart);
-
- 
-
 setTimeout(()=>{heart.remove();},4000);
-
- 
-
 },400);
-
- 
-
 }
-
- 
 
 </script>
 
- 
-
 </body>
-
 </html>
