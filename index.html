@@ -1,1 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Best Friend Day</title>
 
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ff6b81,#ff9ff3);
+    text-align:center;
+    overflow-x:hidden;
+}
+
+.container{
+    padding:20px;
+}
+
+h1{
+    color:white;
+}
+
+.balloons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:30px;
+}
+
+.balloon{
+    font-size:70px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.balloon:hover{
+    transform:scale(1.1);
+}
+
+.hidden{
+    display:none;
+}
+
+.photo{
+    width:250px;
+    border-radius:15px;
+    margin-top:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.letter{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎉 Happy Best Friend Day 🎉</h1>
+
+<h2 id="friendName">Shinzo</h2>
+
+<p>Pop all balloons to reveal memories ❤️</p>
+
+<div class="balloons">
+
+<div class="balloon" onclick="popBalloon(1)">🎈</div>
+<div class="balloon" onclick="popBalloon(2)">🎈</div>
+<div class="balloon" onclick="popBalloon(3)">🎈</div>
+<div class="balloon" onclick="popBalloon(4)">🎈</div>
+<div class="balloon" onclick="popBalloon(5)">🎈</div>
+
+</div>
+
+<div id="gallery"></div>
+
+<div id="letter" class="hidden">
+    <div class="letter">
+        <h2>😜 Dear Shinzo 😜</h2>
+
+        <p>
+        Happy Best Friend Day, Shinzo ❤️
+        Hamari shuruaat chahe perfect nahi thi,
+        lekin aaj tum meri life ke un logon me se ho
+        jin par main sabse zyada trust karta hoon.
+        Thank you for being such a genuine friend.
+        Stay the same, because that's what makes
+        you special!
+
+        <h3>Forever Best Friends 💖</h3>
+    </div>
+</div>
+
+</div>
+
+<script>
+
+let popped=0;
+
+const photos=[
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg",
+"photo4.jpg",
+"photo5.jpg"
+];
+
+function popBalloon(num){
+
+event.target.innerHTML="💥";
+
+const img=document.createElement("img");
+img.src=photos[num-1];
+img.className="photo";
+
+document.getElementById("gallery").appendChild(img);
+
+popped++;
+
+if(popped===5){
+document.getElementById("letter").classList.remove("hidden");
+}
+}
+
+</script>
+
+</body>
+</html>
