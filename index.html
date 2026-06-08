@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Happy Best Friend Day</title>
+
 <style>
-/* Import Futuristic Tech Fonts */
-@import url('https://googleapis.com');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orbitron:wght@700;900&display=swap');
 
 *{
 margin:0;
@@ -15,403 +17,404 @@ box-sizing:border-box;
 }
 
 body{
-background: #0a0a16; /* Image jaisa dark modern background */
-min-height:100vh;
-overflow-x:hidden;
+background:#0a0a16;
+font-family:Montserrat,sans-serif;
 color:white;
 text-align:center;
-font-family: 'Montserrat', sans-serif;
+overflow-x:hidden;
 }
 
 .screen{
 display:none;
-padding:30px 20px;
+padding:20px;
 }
 
 .active{
 display:flex;
 flex-direction:column;
-align-items:center;
 justify-content:center;
+align-items:center;
 min-height:100vh;
 }
 
-/* --- WELCOME SCREEN (IMAGE 1) --- */
-.welcome-icon {
-font-size: 80px;
-margin-bottom: 25px;
-animation: pulse 2s infinite ease-in-out;
-}
-.welcome-title {
-font-family: 'Orbitron', sans-serif;
-font-size: 28px;
-font-weight: 900;
-color: #ffffff;
-letter-spacing: 1px;
-line-height: 1.3;
-text-transform: uppercase;
-}
-.welcome-sub {
-font-family: 'Orbitron', sans-serif;
-font-size: 26px;
-font-weight: 900;
-color: #3a86ff;
-margin-top: 5px;
-text-shadow: 0 0 15px rgba(58, 134, 255, 0.6);
-text-transform: uppercase;
-}
-.welcome-tag {
-font-family: 'Georgia', serif;
-font-style: italic;
-color: #ffbe0b;
-font-size: 20px;
-margin: 30px 0 10px 0;
-}
-.welcome-instruction {
-font-size: 15px;
-opacity: 0.8;
-margin-bottom: 35px;
-letter-spacing: 0.5px;
-}
-.open-btn {
-background: #12122c;
-color: white;
-border: 2px solid #3a86ff;
-padding: 16px 45px;
-font-size: 18px;
-font-weight: bold;
-border-radius: 50px;
-cursor: pointer;
-box-shadow: 0 0 20px rgba(58, 134, 255, 0.4);
-transition: all 0.3s;
-display: flex;
-align-items: center;
-gap: 10px;
-letter-spacing: 1px;
-}
-.open-btn:hover {
-background: #3a86ff;
-box-shadow: 0 0 30px rgba(58, 134, 255, 0.8);
-}
-.open-btn:active {
-transform: scale(0.95);
+button{
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:#3a86ff;
+color:white;
+font-size:18px;
+cursor:pointer;
 }
 
-/* --- LOADING SCREEN (IMAGE 2 EXACT COPY) --- */
-.loading-title {
-font-family: 'Orbitron', sans-serif;
-font-size: 32px;
-font-weight: 900;
-color: #ffffff;
-letter-spacing: 1px;
-line-height: 1.4;
-margin-bottom: 20px;
-max-width: 90%;
-}
-.percent {
-font-family: 'Orbitron', sans-serif;
-font-size: 110px;
-font-weight: 900;
-color: #52b7ff;
-text-shadow: 0 0 40px rgba(82, 183, 255, 0.7);
-margin: 10px 0;
-font-style: italic;
-}
-.loading-status {
-font-family: 'Share Tech Mono', monospace;
-font-size: 16px;
-color: #8fa0b5;
-letter-spacing: 2px;
-text-transform: uppercase;
-margin-bottom: 35px;
-height: 20px;
-}
-/* Seekbar with Dot Indicator */
-.progress-box-custom {
-width: 85%;
-max-width: 380px;
-height: 6px;
-background: #1e293b;
-border-radius: 10px;
-position: relative;
-margin: 10px auto;
-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
-}
-.progress-bar-custom {
-height: 100%;
-width: 0%;
-background: linear-gradient(90deg, #2563eb, #52b7ff);
-border-radius: 10px;
-box-shadow: 0 0 15px #52b7ff;
-position: absolute;
-left: 0;
-top: 0;
-}
-.progress-dot {
-width: 14px;
-height: 14px;
-background: #ffffff;
-border-radius: 50%;
-position: absolute;
-top: 50%;
-right: -7px;
-transform: translateY(-50%);
-box-shadow: 0 0 10px #ffffff, 0 0 20px #52b7ff;
+.percent{
+font-size:90px;
+font-family:Orbitron,sans-serif;
+color:#52b7ff;
 }
 
-/* --- BALLOON SCREEN --- */
-.balloon-screen-title {
-font-family: 'Orbitron', sans-serif;
-color: #ff3366;
-text-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
-font-size: 26px;
-margin-bottom: 10px;
+.bar{
+width:85%;
+max-width:400px;
+height:8px;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+margin-top:20px;
 }
-.balloon-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 20px;
-margin-top: 20px;
-min-height: 420px;
-width: 100%;
+
+.progress{
+height:100%;
+width:0%;
+background:#52b7ff;
 }
-.balloon-box {
-font-size: 110px;
-height: 130px;
-cursor: pointer;
-filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+
+.balloon{
+font-size:120px;
+margin:20px;
 }
+
 .photo-card{
-max-width: 320px;
-width: 90%;
-animation: fadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+max-width:320px;
+width:90%;
+animation:fade .5s ease;
 }
+
 .photo-card img{
 width:100%;
-border-radius:24px;
-border: 3px solid #3a86ff;
-box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-}
-.caption{
-margin-top:15px;
-background: rgba(255, 255, 255, 0.95);
-color:#111;
-padding:14px;
-border-radius:16px;
-font-weight:bold;
-font-size: 15px;
-line-height: 1.4;
-box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+border-radius:20px;
 }
 
-/* --- LETTER & TRANSITION --- */
-.message-box h2 {
-font-family: 'Orbitron', sans-serif;
-color: #ff3366;
-font-size: 28px;
+.caption{
+background:white;
+color:black;
+padding:12px;
+border-radius:12px;
+margin-top:10px;
+font-weight:bold;
 }
-.message-box p {
-font-size: 18px;
-color: #cbd5e1;
-line-height: 1.7;
-}
+
 .letter{
-background: #ffffff;
-color: #1e293b;
-width: 90%;
-max-width: 650px;
-margin: 20px auto;
-padding: 30px 25px;
-border-radius: 24px;
-line-height: 1.8;
-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-text-align: left;
+background:white;
+color:black;
+padding:25px;
+border-radius:20px;
+max-width:700px;
+width:90%;
+line-height:1.8;
 }
-.letter h2 {
-text-align: center;
-margin-bottom: 20px;
-color: #e11d48;
-font-size: 24px;
-}
+
 #typing{
 white-space:pre-line;
-font-size: 16px;
-font-weight: 500;
+text-align:left;
 }
 
-/* Animations */
-@keyframes fadeIn{
-from{ opacity:0; transform: scale(0.9) translateY(30px); }
-to{ opacity:1; transform: scale(1) translateY(0); }
+.heart{
+position:fixed;
+font-size:24px;
+top:-20px;
+animation:fall 4s linear forwards;
 }
-@keyframes pulse {0%, 100% { transform: scale(1); }50% { transform: scale(1.08); }
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
 </style>
 </head>
+
 <body>
-<!-- 1. WELCOME SCREEN -->
-<div id="welcomeScreen" class="screen active">
-<div class="welcome-icon">🫂</div>
-<div class="welcome-title">Your bestie</div>
-<div class="welcome-sub">made this for you</div>
-<div class="welcome-tag">Joydeep made this just for you 💛</div>
-<div class="welcome-instruction">Tap below to unwrap something special</div>
-<button class="open-btn" onclick="startExperience()">Open it 🎁</button>
-</div>
-<!-- 2. LOADING SCREEN (IMAGE 2 DESIGN) -->
-<div id="loading" class="screen">
-<div class="loading-title">Measuring<br>your<br>bestie energy...</div>
-<div class="percent" id="percent">0%</div>
-<div class="loading-status" id="loadingStatus">INITIALIZING CORE...</div>
-<div class="progress-box-custom">
-<div class="progress-bar-custom" id="progress">
-<div class="progress-dot"></div>
-</div>
-</div>
-</div>
-<!-- 3. BALLOONS SCREEN (ONE BY ONE) -->
-<div id="balloonScreen" class="screen">
-<h1 class="balloon-screen-title">🎈 Bestie Energy Detected: 156% 🎈</h1>
-<div class="balloon-container">
-<div class="balloon-box" id="currentBalloon">🎈</div>
-<div id="gallery"></div>
-</div>
-</div>
-<!-- 4. TRANSITION -->
-<div id="transition" class="screen">
-<div class="message-box">
-<h2>You got them all.</h2>
+
+<div id="welcome" class="screen active">
+
+<h1>Your Bestie Made This For You</h1>
+
 <br>
-<p>Every balloon held a little truth about you.<br><br>Now for the real message —<br>the one they actually wrote.</p>
+
+<h3>Saini made this just for you 💛</h3>
+
+<br><br>
+
+<button onclick="startExperience()">
+Open It 🎁
+</button>
+
 </div>
+
+<div id="loading" class="screen">
+
+<h1>Measuring your bestie energy...</h1>
+
+<div class="percent" id="percent">
+0%
 </div>
-<!-- 5. LETTER -->
+
+<div id="status">
+Initializing...
+</div>
+
+<div class="bar">
+<div class="progress" id="progress"></div>
+</div>
+
+</div>
+
+<div id="balloonScreen" class="screen">
+
+<h2>
+🎈 Bestie Energy Detected: 156% 🎈
+</h2>
+
+<div id="balloon" class="balloon">
+🎈
+</div>
+
+<div id="gallery"></div>
+
+</div>
+
+<div id="transition" class="screen">
+
+<h2>You got them all.</h2>
+
+<br>
+
+<p>
+Every balloon held a little truth about you.
+<br><br>
+Now for the real message —
+the one they actually wrote.
+</p>
+
+</div>
+
 <div id="letterScreen" class="screen">
+
 <div class="letter">
+
 <h2>❤️ Dear Shinzo ❤️</h2>
+
 <p id="typing"></p>
+
 </div>
+
 </div>
 
 <script>
-const photos=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg"];
-const captions=["Warning: This person contains unlimited drama but still worth keeping 😜","Friendship level: Sharing office gossip without evidence 🤫","Started with arguments, upgraded to bestie subscription 😂","Trust level: Knows secrets that could end my career 😭","Professional colleagues outside, chaos partners inside 🤝","Proof that even after fighting, some people become your favorite people ❤️"
+
+const photos=[
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg",
+"photo4.jpg",
+"photo5.jpg",
+"photo6.jpg"
 ];
 
-// Tech Status messages text updates during loading
-const statusTexts = ["LOADING SYSTEM MODULES...","CHECKING LOYALTY ALGORITHMS...","ANALYZING MEMORY CACHE...","SYNCHRONIZING VIBES...","GENERATING BESTIE REPORT..."
+const captions=[
+"Office me entry hui aur drama shuru 😜",
+"Friendship level: Unlimited gossip unlocked 🤫",
+"Started as enemies, upgraded to besties 😂",
+"Trust level: Knows too many secrets 😭",
+"Professional outside, chaos inside 🤝",
+"Proof that some people become special unexpectedly ❤️"
 ];
 
-function startExperience() {
-document.getElementById("welcomeScreen").classList.remove("active");
+const statusTexts=[
+"SCANNING MEMORIES...",
+"CHECKING LOYALTY...",
+"MEASURING CHAOS...",
+"ANALYZING FRIENDSHIP...",
+"BESTIE CONFIRMED ❤️"
+];
+
+function startExperience(){
+
+document.getElementById("welcome").classList.remove("active");
 document.getElementById("loading").classList.add("active");
+
 runLoader();
+
 }
 
 function runLoader(){
-let percent=0;
+
+let p=0;
+
+const percent=document.getElementById("percent");
 const progress=document.getElementById("progress");
-const percentText=document.getElementById("percent");
-const statusText=document.getElementById("loadingStatus");
+const status=document.getElementById("status");
 
-const loader=setInterval(()=>{
-percent++;
-progress.style.width=(percent/156*100)+"%";
-percentText.innerText=percent+"%";
+const timer=setInterval(()=>{
 
-// Status text shifts based on progress
-if(percent == 25) statusText.innerText = statusTexts[1];
-if(percent == 60) statusText.innerText = statusTexts[2];
-if(percent == 95) statusText.innerText = statusTexts[3];
-if(percent == 130) statusText.innerText = statusTexts[4];
+p++;
 
-if(percent>=156){
-clearInterval(loader);
+percent.innerText=p+"%";
+
+progress.style.width=(p/156*100)+"%";
+
+if(p===30) status.innerText=statusTexts[1];
+if(p===60) status.innerText=statusTexts[2];
+if(p===100) status.innerText=statusTexts[3];
+if(p===140) status.innerText=statusTexts[4];
+
+if(p>=156){
+
+clearInterval(timer);
+
 setTimeout(()=>{
+
 document.getElementById("loading").classList.remove("active");
 document.getElementById("balloonScreen").classList.add("active");
-startBalloonsOneByOne();
+
+showPhotos();
+
 },1000);
+
 }
+
 },35);
+
 }
 
-function startBalloonsOneByOne(){
-const balloonBox = document.getElementById("currentBalloon");
-const gallery = document.getElementById("gallery");
-let i = 0;
+function showPhotos(){
 
-function showNext() {
-if(i >= 6) {
+let i=0;
+
+const balloon=document.getElementById("balloon");
+const gallery=document.getElementById("gallery");
+
+function next(){
+
+if(i>=6){
+
 setTimeout(()=>{
+
 document.getElementById("balloonScreen").classList.remove("active");
 document.getElementById("transition").classList.add("active");
+
 setTimeout(()=>{
+
 document.getElementById("transition").classList.remove("active");
 document.getElementById("letterScreen").classList.add("active");
+
 typeMessage();
+
 },5000);
+
 },1000);
+
 return;
+
 }
 
-// 1. Reset for next balloon
-balloonBox.style.display = "block";
-balloonBox.innerHTML = "🎈";
-gallery.innerHTML = ""; 
+balloon.style.display="block";
+balloon.innerHTML="🎈";
 
-// 2. Balloon stands for 1.2s then pops
-setTimeout(() => {
-balloonBox.innerHTML = "💥";
+gallery.innerHTML="";
 
-setTimeout(() => {
-balloonBox.style.display = "none"; 
+setTimeout(()=>{
 
-// Render Photo and Caption Card
-const card = document.createElement("div");
-card.className = "photo-card";
-card.innerHTML = `
+balloon.innerHTML="💥";
+
+setTimeout(()=>{
+
+balloon.style.display="none";
+
+gallery.innerHTML=
+`
+<div class="photo-card">
 <img src="${photos[i]}">
 <div class="caption">${captions[i]}</div>
+</div>
 `;
-gallery.appendChild(card);
+
 i++;
 
-// 3. Keep photo on screen for 3 seconds then clear and loop next
-setTimeout(() => {
-showNext();
-}, 3000);
+setTimeout(next,3000);
 
-}, 400); 
-}, 1200); 
+},500);
+
+},1200);
+
 }
 
-showNext();
+next();
+
 }
 
 const finalMessage=`Happy Best Friend Day, Shinzo ❤️
 
-Hamari shuruaat chahe perfect nahi thi, lekin aaj tum meri life ke un logon me se ho jinke saath main bina kisi hesitation ke apni baatein share kar sakta hoon.
+Hamari shuruaat perfect nahi thi,
+lekin shayad isi wajah se aaj hamari friendship itni special hai.
 
-Thank you mujh par trust karne ke liye aur har situation me ek genuine friend ban kar saath dene ke liye.
+Thank you for mujh par trust karne ke liye,
+apni baatein share karne ke liye,
+aur ek genuine friend banne ke liye.
 
-Kuch log waqt ke saath sirf dost nahi, balki zindagi ka ek important hissa ban jaate hain — aur tum unhi me se ek ho.
+Kuch log achanak zindagi me aate hain
+aur dheere dheere uska important part ban jaate hain.
 
-Stay the same, because that's what makes you truly special. ✨
+Stay exactly the way you are,
+because that's what makes you special.
 
 Forever Best Friends 💖`;
 
 function typeMessage(){
+
 let i=0;
+
 const target=document.getElementById("typing");
-const typer=setInterval(()=>{
+
+const typing=setInterval(()=>{
 
 target.innerHTML+=finalMessage.charAt(i);
+
 i++;
+
 if(i>=finalMessage.length){
-clearInterval(typer);
+
+clearInterval(typing);
+
+heartRain();
+
 }
+
 },40);
+
 }
+
+function heartRain(){
+
+setInterval(()=>{
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},4000);
+
+},500);
+
+}
+
+</script>
+
+</body>
+</html>
