@@ -79,56 +79,339 @@ h1{
 <div class="balloon" onclick="popBalloon(4)">🎈</div>
 <div class="balloon" onclick="popBalloon(5)">🎈</div>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Best Friend Day</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+min-height:100vh;
+overflow-x:hidden;
+color:white;
+text-align:center;
+}
+
+.screen{
+display:none;
+padding:30px 20px;
+}
+
+.active{
+display:block;
+}
+
+h1{
+margin-top:20px;
+}
+
+.progress-box{
+width:90%;
+max-width:400px;
+height:30px;
+background:white;
+margin:30px auto;
+border-radius:30px;
+overflow:hidden;
+}
+
+.progress{
+height:100%;
+width:0%;
+background:#ff006e;
+}
+
+.percent{
+font-size:40px;
+font-weight:bold;
+margin-top:15px;
+}
+
+.balloons{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+margin-top:40px;
+}
+
+.balloon{
+font-size:75px;
+transition:.5s;
+}
+
+.photo-card{
+margin:25px auto;
+max-width:300px;
+animation:fadeIn 1s ease;
+}
+
+.photo-card img{
+width:100%;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,.3);
+}
+
+.caption{
+margin-top:10px;
+background:white;
+color:#333;
+padding:10px;
+border-radius:12px;
+font-weight:bold;
+}
+
+.message-box{
+margin-top:60px;
+font-size:22px;
+line-height:1.6;
+padding:20px;
+}
+
+.letter{
+background:white;
+color:#333;
+max-width:700px;
+margin:30px auto;
+padding:25px;
+border-radius:20px;
+line-height:1.8;
+box-shadow:0 0 20px rgba(0,0,0,.2);
+}
+
+#typing{
+white-space:pre-line;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADING SCREEN -->
+
+<div id="loading" class="screen active">
+
+<h1>⚡ Measuring Your Bestie Energy ⚡</h1>
+
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="percent" id="percent">0%</div>
+
+</div>
+
+<!-- BALLOONS -->
+
+<div id="balloonScreen" class="screen">
+
+<h1>🎈 Bestie Energy Detected: 156% 🎈</h1>
+
+<div class="balloons" id="balloons">
+
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+
 </div>
 
 <div id="gallery"></div>
 
-<div id="letter" class="hidden">
-    <div class="letter">
-        <h2>😜 Dear Shinzo 😜</h2>
+</div>
 
-        <p>
-        Happy Best Friend Day, Shinzo ❤️
-        Hamari shuruaat chahe perfect nahi thi,
-        lekin aaj tum meri life ke un logon me se ho
-        jin par main sabse zyada trust karta hoon.
-        Thank you for being such a genuine friend.
-        Stay the same, because that's what makes
-        you special!
+<!-- TRANSITION -->
 
-        <h3>Forever Best Friends 💖</h3>
-    </div>
+<div id="transition" class="screen">
+
+<div class="message-box">
+
+<h2>You got them all.</h2>
+
+<br>
+
+<p>
+Every balloon held a little truth about you.
+<br><br>
+Now for the real message —
+the one they actually wrote.
+</p>
+
+</div>
+
+</div>
+
+<!-- LETTER -->
+
+<div id="letterScreen" class="screen">
+
+<div class="letter">
+
+<h2>❤️ Dear Shinzo ❤️</h2>
+
+<p id="typing"></p>
+
 </div>
 
 </div>
 
 <script>
 
-let popped=0;
-
 const photos=[
 "photo1.jpg",
 "photo2.jpg",
 "photo3.jpg",
 "photo4.jpg",
-"photo5.jpg"
+"photo5.jpg",
+"photo6.jpg"
 ];
 
-function popBalloon(num){
+const captions=[
+"Warning: This person contains unlimited drama but still worth keeping 😜",
+"Friendship level: Sharing office gossip without evidence 🤫",
+"Started with arguments, upgraded to bestie subscription 😂",
+"Trust level: Knows secrets that could end my career 😭",
+"Professional colleagues outside, chaos partners inside 🤝",
+"Proof that even after fighting, some people become your favorite people ❤️"
+];
 
-event.target.innerHTML="💥";
+let percent=0;
 
-const img=document.createElement("img");
-img.src=photos[num-1];
-img.className="photo";
+const progress=document.getElementById("progress");
+const percentText=document.getElementById("percent");
 
-document.getElementById("gallery").appendChild(img);
+const loader=setInterval(()=>{
 
-popped++;
+percent++;
 
-if(popped===5){
-document.getElementById("letter").classList.remove("hidden");
+progress.style.width=(percent/156*100)+"%";
+percentText.innerText=percent+"%";
+
+if(percent>=156){
+
+clearInterval(loader);
+
+setTimeout(()=>{
+
+document.getElementById("loading").classList.remove("active");
+document.getElementById("balloonScreen").classList.add("active");
+
+startBalloons();
+
+},800);
+
 }
+
+},30);
+
+function startBalloons(){
+
+const balloons=document.querySelectorAll(".balloon");
+
+let i=0;
+
+const pop=setInterval(()=>{
+
+if(i>=6){
+
+clearInterval(pop);
+
+setTimeout(()=>{
+
+document.getElementById("balloonScreen").classList.remove("active");
+document.getElementById("transition").classList.add("active");
+
+setTimeout(()=>{
+
+document.getElementById("transition").classList.remove("active");
+document.getElementById("letterScreen").classList.add("active");
+
+typeMessage();
+
+},5000);
+
+},2000);
+
+return;
+
+}
+
+balloons[i].innerHTML="💥";
+
+const card=document.createElement("div");
+card.className="photo-card";
+
+card.innerHTML=`
+<img src="${photos[i]}">
+<div class="caption">${captions[i]}</div>
+`;
+
+document.getElementById("gallery").appendChild(card);
+
+i++;
+
+},1800);
+
+}
+
+const finalMessage=`Happy Best Friend Day, Shinzo ❤️
+
+Hamari shuruaat chahe perfect nahi thi, lekin aaj tum meri life ke un logon me se ho jinke saath main bina kisi hesitation ke apni baatein share kar sakta hoon.
+
+Thank you mujh par trust karne ke liye aur har situation me ek genuine friend ban kar saath dene ke liye.
+
+Kuch log waqt ke saath sirf dost nahi, balki zindagi ka ek important hissa ban jaate hain — aur tum unhi me se ek ho.
+
+Stay the same, because that's what makes you truly special. ✨
+
+Forever Best Friends 💖`;
+
+function typeMessage(){
+
+let i=0;
+
+const target=document.getElementById("typing");
+
+const typer=setInterval(()=>{
+
+target.innerHTML+=finalMessage.charAt(i);
+
+i++;
+
+if(i>=finalMessage.length){
+
+clearInterval(typer);
+
+}
+
+},40);
+
 }
 
 </script>
